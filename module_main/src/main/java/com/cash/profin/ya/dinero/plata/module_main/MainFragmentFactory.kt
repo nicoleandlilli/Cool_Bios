@@ -11,9 +11,9 @@ class MainFragmentFactory : IFragmentFactory {
         var fragment: Fragment? = null
         when(position){
             0->
-//                fragment = ARouter.getInstance().build(RouterPaths.HOME_FRAGMENT)
-//                    .navigation() as Fragment
-                fragment = TestFragment()
+                fragment = ARouter.getInstance().build(RouterPaths.HOME_POPULAR)
+                    .navigation() as Fragment
+//                fragment = TestFragment()
             1->
                 fragment = ARouter.getInstance().build(RouterPaths.HOME_LATEST)
                     .navigation() as Fragment
