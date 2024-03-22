@@ -1,0 +1,31 @@
+apply from: "${rootProject.rootDir}/common_config.gradle"
+project.ext.setAppDefaultConfig project
+
+
+android {
+    namespace 'com.wgl.coolbios'
+    buildTypes {
+
+        debug{
+            minifyEnabled false //使用arouter debug模式下必须置为false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':module_base')
+
+    implementation project(path: ':module_main')
+    implementation project(path: ':module_credit')
+    implementation project(path: ':module_home')
+    implementation project(path: ':module_mine')
+}
+
+

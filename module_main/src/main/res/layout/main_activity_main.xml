@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cash.profin.ya.dinero.plata.lib_common.view.navigationbar.NavigationBar
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/purple_500"
+        android:layout_alignParentBottom="true">
+
+    </com.cash.profin.ya.dinero.plata.lib_common.view.navigationbar.NavigationBar>
+
+    <com.cash.profin.ya.dinero.plata.module_main.view.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/navigationBar"/>
+
+</RelativeLayout>

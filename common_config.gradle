@@ -1,0 +1,109 @@
+project.ext{
+    compileSdkVersion = 34
+    minSdkVersion = 21
+    buildToolsVersion = "30.0.2"
+    targetSdkVersion = 34
+//    applicationId = "com.cash.profin.ya.dinero.plata.credit"
+    applicationId = "com.wgl.coolbios"
+    versionCode = 1
+    versionName = "1.0.0"
+
+    //是否允许module单独调试
+    isModuleDebug = false
+
+    //设置app配置
+    setAppDefaultConfig = {
+        extension ->
+            extension.apply plugin: 'com.android.application'
+            extension.description "app"
+            extension.apply plugin: 'kotlin-android'
+//            extension.apply plugin: 'kotlin-android-extensions'
+            extension.apply plugin: 'kotlin-kapt'
+//            extension.apply plugin: 'kotlin-parcelize'
+            //设置通用Android配置
+            setAppAndroidConfig extension.android
+            //设置通用依赖配置
+            setDependencies extension.dependencies
+    }
+
+    //设置lib配置（只可以作为lib,不可单独调试）
+    setLibDefaultConfig = {
+        extension ->
+            extension.apply plugin: 'com.android.library'
+            extension.description "lib"
+            extension.apply plugin: 'kotlin-android'
+//            extension.apply plugin: 'kotlin-android-extensions'
+            extension.apply plugin: 'kotlin-kapt'
+//            extension.apply plugin: 'kotlin-parcelize'
+//            extension.apply plugin: 'com.android.databinding'
+            //设置通用Android配置
+            setLibAndroidConfig extension.android
+            //设置通用依赖配置
+            setDependencies extension.dependencies
+    }
+
+
+    //设置app android配置
+    setAppAndroidConfig = {
+        extension -> //extension 相当于 android 对象
+            extension.compileSdkVersion project.ext.compileSdkVersion
+//            extension.buildToolsVersion project.ext.buildToolsVersion
+            extension.defaultConfig {
+                applicationId project.ext.applicationId
+                minSdkVersion project.ext.minSdkVersion
+                targetSdkVersion project.ext.targetSdkVersion
+                versionCode project.ext.versionCode
+                versionName project.ext.versionName
+
+                multiDexEnabled true
+
+                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+            }
+
+            extension.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
+            }
+
+            extension.kotlinOptions {
+                jvmTarget = '17'
+            }
+
+            extension.viewBinding {
+                enabled = true
+            }
+
+            extension.dataBinding {
+                enabled true
+            }
+
+
+
+    }
+
+    //设置lib android配置（只可以作为lib,不可单独调试）
+    setLibAndroidConfig = {
+        extension -> //extension 相当于 android 对象
+            extension.compileSdkVersion project.ext.compileSdkVersion
+//            extension.buildToolsVersion project.ext.buildToolsVersion
+            extension.defaultConfig {
+                minSdkVersion project.ext.minSdkVersion
+                targetSdkVersion project.ext.targetSdkVersion
+                versionCode project.ext.versionCode
+                versionName project.ext.versionName
+
+                multiDexEnabled true
+
+                testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+            }
+
+
+    }
+
+    //设置依赖
+    setDependencies = {
+        extension ->
+
+    }
+}
