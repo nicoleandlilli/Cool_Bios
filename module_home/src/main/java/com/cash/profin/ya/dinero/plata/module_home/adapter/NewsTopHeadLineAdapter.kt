@@ -34,7 +34,7 @@ class NewsTopHeadLineAdapter():
         var article: Article? = mArticleList.get(position)
 
         article?.let {
-            holder.binding.tvContent.text = article.title
+//            holder.binding.tvContent.text = article.title
         }
 
     }

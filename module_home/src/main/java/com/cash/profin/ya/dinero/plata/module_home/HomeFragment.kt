@@ -16,19 +16,8 @@ import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentHomeB
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
 
 @Route(path = RouterPaths.HOME_POPULAR)
-//class HomeFragment:BaseFragment<HomeFragmentHomeBinding>() {
-//    override fun getViewBinding(container: ViewGroup?)=HomeFragmentHomeBinding.inflate(layoutInflater)
-//
-//    override fun initView() {
-//
-//    }
-//
-//    override fun initData() {
-//
-//    }
-//}
 
-class HOME_POPULAR:BaseFragment<HomeFragmentPopularBinding>() {
+class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
 
     private var mCount:Int =0;
     private lateinit var mAdapter: NewsTopHeadLineAdapter
