@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dialog_custom_net_dialog_bg">#FFFFFF</color>
+    <color name="dialog_custom_net_dialog_content_bg">#F3F6FF</color>
+    <color name="tv_custome_net_dialog_content">#333333</color>
+</resources>

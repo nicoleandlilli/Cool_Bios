@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.cash.profin.ya.dinero.plata.lib_net.exception.ApiException
 import com.cash.profin.ya.dinero.plata.lib_net.exception.BaseException
 import com.cash.profin.ya.dinero.plata.lib_net.exception.ErrorMessageFactory
-import com.cash.profin.ya.dinero.plata.module_base.view.CustomTimeOutDialog
+import com.cash.profin.ya.dinero.plata.lib_net.view.CustomTimeOutDialog
 import java.net.SocketException
 import java.net.SocketTimeoutException
 

@@ -1,4 +1,4 @@
-package com.cash.profin.ya.dinero.plata.module_base.view
+package com.cash.profin.ya.dinero.plata.lib_net.view
 
 import android.app.Dialog
 import android.content.Context

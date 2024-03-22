@@ -3,7 +3,6 @@ package com.cash.profin.ya.dinero.plata.lib_net.rx.subscriber
 
 import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresExtension
 import com.cash.profin.ya.dinero.plata.lib_net.exception.BaseException
 import com.cash.profin.ya.dinero.plata.lib_net.rx.RxErrorHandler
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="dialog_custom_net_dialog" tools:ignore="MissingTranslation">La red es anormal, intente nuevamente</string>
+    <string name="bt_cancel" tools:ignore="MissingTranslation">CANCELAR</string>
+    <string name="bt_agree" tools:ignore="MissingTranslation">ABRIR</string>
+</resources>
