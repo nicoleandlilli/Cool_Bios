@@ -24,8 +24,14 @@ class TabView : LinearLayout {
     }
 
     fun setTabData(tabData: TabData) {
-        mBinding.image.setBackgroundResource(tabData.icon)
+//        mBinding.image.setBackgroundResource(tabData.icon)
         mBinding.text.text = tabData.text
         isSelected = tabData.isSelected
+        if(isSelected){
+            mBinding.image.visibility = VISIBLE;
+        }else{
+            mBinding.image.visibility = INVISIBLE;
+
+        }
     }
 }

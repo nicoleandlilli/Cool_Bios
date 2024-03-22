@@ -24,7 +24,7 @@ class MainActivity:BaseActivity<MainActivityMainBinding>() {
         })
 
         mBinding.viewPager.run {
-            offscreenPageLimit = 3
+            offscreenPageLimit = 2
             adapter = MainFragmentPagerAdapter(supportFragmentManager,0)
 
             addOnPageChangeListener (object :ViewPager.OnPageChangeListener{

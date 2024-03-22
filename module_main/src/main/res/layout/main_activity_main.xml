@@ -7,8 +7,8 @@
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
-        android:background="@color/purple_500"
-        android:layout_alignParentBottom="true">
+        android:background="#FFF3F6"
+        android:layout_alignParentTop="true">
 
     </com.cash.profin.ya.dinero.plata.lib_common.view.navigationbar.NavigationBar>
 
@@ -16,6 +16,6 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigationBar"/>
+        android:layout_below="@id/navigationBar"/>
 
 </RelativeLayout>

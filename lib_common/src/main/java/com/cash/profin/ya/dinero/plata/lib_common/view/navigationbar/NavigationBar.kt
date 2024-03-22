@@ -9,13 +9,15 @@ import com.cash.profin.ya.dinero.plata.lib_common.R
 
 class NavigationBar : LinearLayout{
     private val tabImages = arrayOf(
-        com.google.android.material.R.drawable.ic_arrow_back_black_24,
-        com.google.android.material.R.drawable.abc_ab_share_pack_mtrl_alpha,
-        com.google.android.material.R.drawable.m3_tabs_background,
+//        com.google.android.material.R.drawable.ic_arrow_back_black_24,
+//        com.google.android.material.R.drawable.abc_ab_share_pack_mtrl_alpha,
+
+        R.drawable.tabview_line,
+        R.drawable.tabview_line,
 
     )
 
-    private val tabText = arrayOf("首页", "多产品", "个人", )
+    private val tabText = arrayOf("Popular", "Latest")
 
     private val tabViews: MutableList<TabView>? = mutableListOf()
     private val tabDatas: MutableList<TabData>? = mutableListOf()
@@ -57,10 +59,9 @@ class NavigationBar : LinearLayout{
 
             val layoutParams = LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
             layoutParams.width = 0
-            layoutParams.rightMargin = 20
             layoutParams.weight = 1.0f
             addView(tabView, layoutParams)
         }

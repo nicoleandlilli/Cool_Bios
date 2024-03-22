@@ -15,7 +15,7 @@ class MainFragmentFactory : IFragmentFactory {
 //                    .navigation() as Fragment
                 fragment = TestFragment()
             1->
-                fragment = ARouter.getInstance().build(RouterPaths.CREDIT_FRAGMENT)
+                fragment = ARouter.getInstance().build(RouterPaths.HOME_LATEST)
                     .navigation() as Fragment
             2->
                 fragment = ARouter.getInstance().build(RouterPaths.MINE_FRAGMENT)
