@@ -14,17 +14,9 @@ class CommonParamsInterceptor: Interceptor {
         var originalRequest = chain.request()
         var request: Request
         val modifiedUrl = originalRequest.url.newBuilder()
-            .addQueryParameter("udid", "6a6fa0cffa894788983cce8dc7d33cd7c508f3bb")
-            .addQueryParameter("vc", "6030071")
-            .addQueryParameter("vn", "6.3.7")
-            .addQueryParameter(
-                "size",
-                DisplayUtil.getScreenRatio(CommonApplication.getContext())
-            )
-            .addQueryParameter("deviceModel", DeviceUtil.getMobileModel())
-            .addQueryParameter("first_channel", DeviceUtil.getMobileBrand())
-            .addQueryParameter("last_channel", DeviceUtil.getMobileBrand())
-            .addQueryParameter("system_version_code", DeviceUtil.getSystemVersion())
+            .addQueryParameter("simpleMostGarbageCountry", "267")
+            .addQueryParameter("freshExhibitionLovelyCowboyBoundTeacher", "0.0")
+            .addQueryParameter("fastLittleFeatherThing", "es")
             .build()
 
         request = originalRequest.newBuilder().url(modifiedUrl).build()
