@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    tools:ignore="ResourceName">
 
 
     <androidx.cardview.widget.CardView
@@ -19,8 +21,9 @@
     </androidx.cardview.widget.CardView>
 
 
+
     <TextView
-        android:text="I'm the Content"
+        android:text="I'm the Content I'm the Content I'm the Content I'm the Content I'm the Content I'm the Content I'm the Content"
         android:id="@+id/tv_content"
         android:layout_width="0dp"
         android:layout_height="100dp"

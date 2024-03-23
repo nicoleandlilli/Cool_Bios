@@ -12,7 +12,6 @@ import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
 import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
-import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentHomeBinding
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
 
 @Route(path = RouterPaths.HOME_POPULAR)

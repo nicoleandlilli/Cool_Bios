@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import com.alibaba.android.arouter.launcher.ARouter
 import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
 import com.cash.profin.ya.dinero.plata.module_base.impl.IFragmentFactory
-import com.cash.profin.ya.dinero.plata.module_main.ui.TestFragment
 
 class MainFragmentFactory : IFragmentFactory {
     override fun createFragment(position: Int): Fragment {

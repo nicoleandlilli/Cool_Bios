@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
-import com.cash.profin.ya.dinero.plata.module_home.databinding.HomePopularItemBinding
+import com.cash.profin.ya.dinero.plata.module_home.databinding.MainNewsItemBinding
 
 
 class NewsTopHeadLineAdapter():
@@ -16,11 +16,11 @@ class NewsTopHeadLineAdapter():
         this.mArticleList = articleList as ArrayList<Article>
         notifyDataSetChanged()
     }
-    inner class ArticleViewHolder(val binding: HomePopularItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ArticleViewHolder(val binding: MainNewsItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         return ArticleViewHolder(
-            HomePopularItemBinding.inflate(
+            MainNewsItemBinding.inflate(
                 LayoutInflater.from(parent.context)
             )
         )
@@ -35,6 +35,7 @@ class NewsTopHeadLineAdapter():
 
         article?.let {
 //            holder.binding.tvContent.text = article.title
+//            holder.binding.tvContent.setText(article?.title);
         }
 
     }
