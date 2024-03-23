@@ -91,7 +91,7 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (document in task.result) {
-
+//                        QueryDocumentSnapshot
                         Log.d("HomeFragment", document.id + " => " + document.data)
 
                         var gender:String = document["gender"].toString();

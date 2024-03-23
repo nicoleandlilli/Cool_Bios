@@ -92,4 +92,6 @@ dependencies {
     api 'com.google.firebase:firebase-analytics'
     api 'com.google.firebase:firebase-firestore'
 
+    api 'com.android.support:appcompat-v7:23.2.0'
+
 }
