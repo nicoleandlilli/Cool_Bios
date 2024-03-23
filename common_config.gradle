@@ -19,6 +19,7 @@ project.ext{
             extension.apply plugin: 'kotlin-android'
 //            extension.apply plugin: 'kotlin-android-extensions'
             extension.apply plugin: 'kotlin-kapt'
+            extension.apply plugin: 'com.google.gms.google-services'
 //            extension.apply plugin: 'kotlin-parcelize'
             //设置通用Android配置
             setAppAndroidConfig extension.android

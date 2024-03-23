@@ -86,4 +86,9 @@ dependencies {
     //Arouter
 //    api 'com.alibaba:arouter-api:1.5.2'
 //    kapt 'com.alibaba:arouter-compiler:1.5.2'
+
+    //firebase
+    api(platform("com.google.firebase:firebase-bom:32.8.0"))
+    api 'com.google.firebase:firebase-analytics'
+
 }

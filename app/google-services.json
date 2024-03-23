@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "874107387654",
+    "project_id": "cool-bios-c74ae",
+    "storage_bucket": "cool-bios-c74ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874107387654:android:b36c9e40f5772822a2e887",
+        "android_client_info": {
+          "package_name": "com.wgl.coolbios"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCubGZUpLrHpCUWfNuu6-WBTRsBpdV3QmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
