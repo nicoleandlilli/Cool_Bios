@@ -31,7 +31,7 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
         setRecyclerView()
 
         mBinding.swipeRefreshLayout?.apply {
-            setColorSchemeResources(R.color.teal_700)
+            setColorSchemeResources(R.color.pink)
 
             setOnRefreshListener {
 
@@ -74,6 +74,11 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
     private fun setAdapterData(){
         mArticles.addAll(getArticles())
         mAdapter.setArticleList(mArticles)
+        getData()
+    }
+
+    private fun getData() {
+//        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
     }
 
 
