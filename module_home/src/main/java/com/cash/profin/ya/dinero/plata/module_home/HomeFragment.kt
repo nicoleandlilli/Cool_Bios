@@ -56,17 +56,17 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
             val dividerDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
             addItemDecoration(dividerDecoration)
 
-            addOnScrollListener(object: RecyclerView.OnScrollListener(){
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-
-                    if(isSlideToBottom(this@apply)){
-                        setAdapterData()
-                        Toast.makeText(context,"加载更多", Toast.LENGTH_SHORT).show()
-                    }
-
-                }
-            })
+//            addOnScrollListener(object: RecyclerView.OnScrollListener(){
+//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                    super.onScrolled(recyclerView, dx, dy)
+//
+//                    if(isSlideToBottom(this@apply)){
+//                        setAdapterData()
+//                        Toast.makeText(context,"加载更多", Toast.LENGTH_SHORT).show()
+//                    }
+//
+//                }
+//            })
 
             adapter = mAdapter
         }
@@ -94,8 +94,8 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful && task.result.size()>0) {
 
-                        var documentSnapshots : List<DocumentSnapshot> = task.result.documents;
-                            mAdapter.setArticleList(documentSnapshots)
+                        var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
+                         mAdapter.setArticleList(documentSnapshots)
 //                    for (document in task.result) {
 ////                        QueryDocumentSnapshot
 //                        Log.d("HomeFragment", document.id + " => " + document.data)
@@ -119,15 +119,6 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
     }
 
 
-    fun getArticles():ArrayList<Article>{
-        var articles = ArrayList<Article>()
-        for(i in 1..10){
-            var article = Article("Title${mCount++}","")
-            articles.add(article)
-        }
-
-        return articles
-    }
 
     private fun isSlideToBottom(recyclerView: RecyclerView):Boolean{
 

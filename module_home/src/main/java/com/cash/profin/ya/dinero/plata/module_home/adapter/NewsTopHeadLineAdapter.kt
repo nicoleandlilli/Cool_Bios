@@ -1,24 +1,25 @@
 package com.cash.profin.ya.dinero.plata.module_home.adapter
 
+import android.content.Context
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.cash.profin.ya.dinero.plata.module_home.R
-import com.cash.profin.ya.dinero.plata.module_home.bean.Article
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomePopularItemBinding
-import com.cash.profin.ya.dinero.plata.module_home.databinding.MainNewsItemBinding
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
 
 
 class NewsTopHeadLineAdapter():
     RecyclerView.Adapter<NewsTopHeadLineAdapter.ArticleViewHolder>(){
 
-    var mDocumentSnapshots : List<DocumentSnapshot> = ArrayList<DocumentSnapshot>()
+    var mDocumentSnapshots : ArrayList<DocumentSnapshot> = ArrayList<DocumentSnapshot>()
 
-    fun setArticleList(documentSnapshots : List<DocumentSnapshot>){
+    fun setArticleList(documentSnapshots : ArrayList<DocumentSnapshot>){
+        mDocumentSnapshots.clear()
         this.mDocumentSnapshots = documentSnapshots
         notifyDataSetChanged()
     }
@@ -36,14 +37,57 @@ class NewsTopHeadLineAdapter():
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        var documentSnapshots : List<DocumentSnapshot>
         var documentSnapshot:DocumentSnapshot = mDocumentSnapshots.get(position)
 
-        documentSnapshot?.let {
-//            holder.binding.tvContent.text = article.title
-            holder.binding.tvContent.setText(documentSnapshot.data.toString())
+        Log.d("HomeFragment", documentSnapshot.id + " => " + documentSnapshot.data)
+
+        var context = holder.binding.lvContent.context
+
+        var linearLayout = holder.binding.lvContent
+
+        var name:String = documentSnapshot["name"].toString();
+        Log.d("HomeFragment", "name  => " + name)
+        name?.let {
+            addEdiText(name,context,linearLayout)
         }
 
+        var gender:String = documentSnapshot["gender"].toString();
+        Log.d("HomeFragment", "gender  => " + gender)
+        gender?.let {
+            addEdiText(gender,context,linearLayout)
+        }
+
+
+        var age:Long = documentSnapshot["age"] as Long;
+        Log.d("HomeFragment", "age  => " + age)
+        age?.let {
+            addEdiText("$age",context,linearLayout)
+        }
+
+        var hobby:String = documentSnapshot["hobby"].toString();
+        Log.d("HomeFragment", "hobby  => " + hobby)
+        hobby?.let {
+            addEdiText(hobby,context,linearLayout)
+        }
+
+    }
+
+    fun addEdiText(content: String,context: Context,linearLayout: ViewGroup){
+        var editText = EditText(context)
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+
+//        layoutParams.setMargins(16,16,16,16)
+
+        editText.background = null
+        editText.setTextSize(18F)
+        editText.setTextColor(Color.BLACK)
+        editText.setText(content)
+
+//        linearLayout.addView(editText,layoutParams)
+        linearLayout.addView(editText)
     }
 
 }
