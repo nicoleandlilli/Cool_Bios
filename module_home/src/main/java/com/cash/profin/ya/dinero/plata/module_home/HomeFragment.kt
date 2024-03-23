@@ -73,6 +73,11 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
 
 
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         setAdapterData()
     }
 
