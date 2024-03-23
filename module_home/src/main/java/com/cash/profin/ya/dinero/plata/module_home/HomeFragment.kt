@@ -1,6 +1,7 @@
 package com.cash.profin.ya.dinero.plata.module_home
 
 
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isEmpty
@@ -13,6 +14,9 @@ import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+
 
 @Route(path = RouterPaths.HOME_POPULAR)
 
@@ -74,11 +78,25 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
     private fun setAdapterData(){
         mArticles.addAll(getArticles())
         mAdapter.setArticleList(mArticles)
-        getData()
+        Thread(Runnable {
+            getData()
+        }).start()
+
     }
 
     private fun getData() {
-//        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        db.collection("message")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result) {
+                        Log.d("HomeFragment", document.id + " => " + document.data)
+                    }
+                } else {
+                    Log.w("HomeFragment", "Error getting documents.", task.exception)
+                }
+            }
     }
 
 

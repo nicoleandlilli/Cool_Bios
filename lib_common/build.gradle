@@ -90,5 +90,6 @@ dependencies {
     //firebase
     api(platform("com.google.firebase:firebase-bom:32.8.0"))
     api 'com.google.firebase:firebase-analytics'
+    api 'com.google.firebase:firebase-firestore'
 
 }
