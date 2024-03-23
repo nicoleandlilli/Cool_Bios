@@ -14,6 +14,7 @@ import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 
@@ -76,8 +77,8 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
     }
 
     private fun setAdapterData(){
-        mArticles.addAll(getArticles())
-        mAdapter.setArticleList(mArticles)
+//        mArticles.addAll(getArticles())
+//        mAdapter.setArticleList(mArticles)
         Thread(Runnable {
             getData()
         }).start()
@@ -86,10 +87,15 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
 
     private fun getData() {
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+
         db.collection("message")
             .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful && task.result.size()>0) {
+
+                        var documentSnapshots : List<DocumentSnapshot> = task.result.documents;
+                            mAdapter.setArticleList(documentSnapshots)
                     for (document in task.result) {
 //                        QueryDocumentSnapshot
                         Log.d("HomeFragment", document.id + " => " + document.data)
