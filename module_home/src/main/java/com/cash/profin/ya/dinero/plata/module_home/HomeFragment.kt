@@ -86,12 +86,13 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
     }
 
     private fun getData() {
+        mBinding.swipeRefreshLayout.isRefreshing = true
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-
         db.collection("message")
+            .whereGreaterThanOrEqualTo("favarite_number",500)
             .get()
                     .addOnCompleteListener { task ->
+                        mBinding.swipeRefreshLayout.isRefreshing = false
                         if (task.isSuccessful && task.result.size()>0) {
 
                         var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>

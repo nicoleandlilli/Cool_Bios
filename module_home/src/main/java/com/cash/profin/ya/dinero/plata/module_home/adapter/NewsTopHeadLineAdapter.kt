@@ -70,6 +70,9 @@ class NewsTopHeadLineAdapter():
             addEdiText(hobby,context,linearLayout)
         }
 
+        var favarite_number:Long = documentSnapshot["favarite_number"] as Long
+        holder.binding.tvFavoriteNumber.text = "$favarite_number"
+
     }
 
     fun addEdiText(content: String,context: Context,linearLayout: ViewGroup){
