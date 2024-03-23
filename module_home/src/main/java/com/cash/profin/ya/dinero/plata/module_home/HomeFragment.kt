@@ -96,22 +96,22 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
 
                         var documentSnapshots : List<DocumentSnapshot> = task.result.documents;
                             mAdapter.setArticleList(documentSnapshots)
-                    for (document in task.result) {
-//                        QueryDocumentSnapshot
-                        Log.d("HomeFragment", document.id + " => " + document.data)
-
-                        var gender:String = document["gender"].toString();
-                        Log.d("HomeFragment", "gender  => " + gender)
-
-                        var name:String = document["name"].toString();
-                        Log.d("HomeFragment", "name  => " + name)
-
-                        var age:Long = document["age"] as Long;
-                        Log.d("HomeFragment", "age  => " + age)
-
-                        var hobby:String = document["hobby"].toString();
-                        Log.d("HomeFragment", "hobby  => " + hobby)
-                    }
+//                    for (document in task.result) {
+////                        QueryDocumentSnapshot
+//                        Log.d("HomeFragment", document.id + " => " + document.data)
+//
+//                        var gender:String = document["gender"].toString();
+//                        Log.d("HomeFragment", "gender  => " + gender)
+//
+//                        var name:String = document["name"].toString();
+//                        Log.d("HomeFragment", "name  => " + name)
+//
+//                        var age:Long = document["age"] as Long;
+//                        Log.d("HomeFragment", "age  => " + age)
+//
+//                        var hobby:String = document["hobby"].toString();
+//                        Log.d("HomeFragment", "hobby  => " + hobby)
+//                    }
                 } else {
                     Log.w("HomeFragment", "Error getting documents.", task.exception)
                 }
