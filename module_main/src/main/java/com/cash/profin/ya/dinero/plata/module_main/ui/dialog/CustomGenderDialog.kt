@@ -40,23 +40,7 @@ class CustomGenderDialog: Dialog {
             setGravity(Gravity.CENTER)
         }
 
-        mMainDialogGenderBinding.lvBoy.setOnClickListener({
-            var gender:String by PrefsUtil(PrefsConfig.GENDER,PrefsConfig.GENDER_BOTH)
-            gender = PrefsConfig.GENDER_MALE
-            dismiss()
-        })
 
-        mMainDialogGenderBinding.lvGirl.setOnClickListener({
-            var gender:String by PrefsUtil(PrefsConfig.GENDER,PrefsConfig.GENDER_BOTH)
-            gender = PrefsConfig.GENDER_FEMALE
-            dismiss()
-        })
-
-        mMainDialogGenderBinding.lvBoth.setOnClickListener({
-            var gender:String by PrefsUtil(PrefsConfig.GENDER,PrefsConfig.GENDER_BOTH)
-            gender = PrefsConfig.GENDER_BOTH
-            dismiss()
-        })
     }
 
 
