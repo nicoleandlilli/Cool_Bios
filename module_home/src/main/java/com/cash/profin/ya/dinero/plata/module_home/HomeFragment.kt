@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isEmpty
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.cash.profin.ya.dinero.plata.lib_common.config.PrefsConfig
+import com.cash.profin.ya.dinero.plata.lib_common.utils.PrefsUtil
 import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
 import com.cash.profin.ya.dinero.plata.module_base.constants.ViewtTypeConstants
 import com.cash.profin.ya.dinero.plata.module_base.listener.ViewClickListener
@@ -16,17 +19,22 @@ import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
+import com.cash.profin.ya.dinero.plata.module_home.viewmodel.HomeViewModel
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.runBlocking
 
 
 @Route(path = RouterPaths.HOME_POPULAR)
-
 class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
 
     private var mCount:Int =0;
     private lateinit var mAdapter: NewsTopHeadLineAdapter
     private var mArticles = ArrayList<Article>()
+
+    private val mHomeViewModel: HomeViewModel by viewModels()
     override fun getViewBinding(container: ViewGroup?)=HomeFragmentPopularBinding.inflate(layoutInflater)
 
     override fun initView() {
@@ -80,49 +88,42 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
     override fun onResume() {
         super.onResume()
         setAdapterData()
+        Log.d("HomeFragment", "onResume()..............................")
     }
 
     private fun setAdapterData(){
-//        mArticles.addAll(getArticles())
-//        mAdapter.setArticleList(mArticles)
-        Thread(Runnable {
-            getData()
-        }).start()
+        getData()
 
     }
 
     private fun getData() {
         mBinding.swipeRefreshLayout.isRefreshing = true
-        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-        db.collection("message")
-            .whereGreaterThanOrEqualTo("favarite_number",500)
-            .get()
-                    .addOnCompleteListener { task ->
-                        mBinding.swipeRefreshLayout.isRefreshing = false
-                        if (task.isSuccessful && task.result.size()>0) {
 
-                        var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
-                         mAdapter.setArticleList(documentSnapshots)
-//                    for (document in task.result) {
-////                        QueryDocumentSnapshot
-//                        Log.d("HomeFragment", document.id + " => " + document.data)
-//
-//                        var gender:String = document["gender"].toString();
-//                        Log.d("HomeFragment", "gender  => " + gender)
-//
-//                        var name:String = document["name"].toString();
-//                        Log.d("HomeFragment", "name  => " + name)
-//
-//                        var age:Long = document["age"] as Long;
-//                        Log.d("HomeFragment", "age  => " + age)
-//
-//                        var hobby:String = document["hobby"].toString();
-//                        Log.d("HomeFragment", "hobby  => " + hobby)
-//                    }
-                } else {
-                    Log.w("HomeFragment", "Error getting documents.", task.exception)
-                }
+        var task: Task<QuerySnapshot>? = runBlocking {
+
+            var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
+//            gender = PrefsConfig.GENDER_FEMALE
+
+            if(gender==PrefsConfig.GENDER_BOTH){
+                mHomeViewModel.getMessageInfo(mBinding)
+            }else if(gender==PrefsConfig.GENDER_FEMALE){
+                mHomeViewModel.getFemaleMessageInfo(mBinding)
+            }else{
+                mHomeViewModel.getMaleMessageInfo(mBinding)
             }
+
+        }
+
+        task?.addOnCompleteListener { task ->
+            mBinding.swipeRefreshLayout.isRefreshing = false
+            if (task.isSuccessful && task.result.size()>0) {
+                var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
+                mAdapter.setArticleList(documentSnapshots)
+            } else {
+                Log.w("HomeFragment", "Error getting documents.", task.exception)
+            }
+        }
+
     }
 
 
