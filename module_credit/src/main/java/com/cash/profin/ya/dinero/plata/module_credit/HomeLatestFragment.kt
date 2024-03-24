@@ -1,8 +1,7 @@
-package com.cash.profin.ya.dinero.plata.module_home
+package com.cash.profin.ya.dinero.plata.module_credit
 
 
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,24 +11,20 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.cash.profin.ya.dinero.plata.lib_common.config.PrefsConfig
 import com.cash.profin.ya.dinero.plata.lib_common.utils.PrefsUtil
 import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
-import com.cash.profin.ya.dinero.plata.module_base.constants.ViewtTypeConstants
-import com.cash.profin.ya.dinero.plata.module_base.listener.ViewClickListener
 import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
-import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
-import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
-import com.cash.profin.ya.dinero.plata.module_home.viewmodel.HomeViewModel
+import com.cash.profin.ya.dinero.plata.module_credit.databinding.HomeFragmentLatestBinding
+import com.cash.profin.ya.dinero.plata.module_home.adapter.LatestMessageAdapter
+import com.cash.profin.ya.dinero.plata.module_home.viewmodel.HomeLatesetViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 
+@Route(path = RouterPaths.HOME_LATEST)
+class HomeLatestFragment:BaseFragment<HomeFragmentLatestBinding>() {
+    private lateinit var mAdapter: LatestMessageAdapter
 
-@Route(path = RouterPaths.HOME_POPULAR)
-class HomePopularFragment:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
-
-    private lateinit var mAdapter: NewsTopHeadLineAdapter
-
-    private val mHomeViewModel: HomeViewModel by viewModels()
-    override fun getViewBinding(container: ViewGroup?)=HomeFragmentPopularBinding.inflate(layoutInflater)
+    private val mHomeViewModel: HomeLatesetViewModel by viewModels()
+    override fun getViewBinding(container: ViewGroup?)=HomeFragmentLatestBinding.inflate(layoutInflater)
 
     override fun initView() {
 
@@ -47,7 +42,7 @@ class HomePopularFragment:BaseFragment<HomeFragmentPopularBinding>(),ViewClickLi
             }
         }
 
-        mHomeViewModel.getMutableLiveDataTask().observe(this, Observer { task:Task<QuerySnapshot>? ->
+        mHomeViewModel.getMutableLiveDataTask().observe(this, Observer { task: Task<QuerySnapshot>? ->
             mBinding.swipeRefreshLayout.isRefreshing = false
             if (task != null) {
                 var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
@@ -61,7 +56,7 @@ class HomePopularFragment:BaseFragment<HomeFragmentPopularBinding>(),ViewClickLi
     }
 
     private fun setRecyclerView() {
-        mAdapter = NewsTopHeadLineAdapter()
+        mAdapter = LatestMessageAdapter()
         mBinding.recyclerView.apply {
             val linearLayoutManager = LinearLayoutManager(context)
             linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -102,9 +97,9 @@ class HomePopularFragment:BaseFragment<HomeFragmentPopularBinding>(),ViewClickLi
     private fun getData() {
         mBinding.swipeRefreshLayout.isRefreshing = true
         var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
-        if(gender==PrefsConfig.GENDER_BOTH){
+        if(gender== PrefsConfig.GENDER_BOTH){
             mHomeViewModel.getMessageInfo()
-        }else if(gender==PrefsConfig.GENDER_FEMALE){
+        }else if(gender== PrefsConfig.GENDER_FEMALE){
             mHomeViewModel.getFemaleMessageInfo()
         }else{
             mHomeViewModel.getMaleMessageInfo()
@@ -122,9 +117,5 @@ class HomePopularFragment:BaseFragment<HomeFragmentPopularBinding>(),ViewClickLi
     }
 
 
-    override fun onClick(type: Int, obj2: Object) {
-        if(type == ViewtTypeConstants.VIEW_GENDER){
-            Toast.makeText(context,"收到了性别的提示",Toast.LENGTH_SHORT).show()
-        }
-    }
+
 }
