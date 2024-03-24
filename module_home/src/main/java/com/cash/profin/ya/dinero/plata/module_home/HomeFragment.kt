@@ -102,7 +102,6 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
         var task: Task<QuerySnapshot>? = runBlocking {
 
             var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
-//            gender = PrefsConfig.GENDER_FEMALE
 
             if(gender==PrefsConfig.GENDER_BOTH){
                 mHomeViewModel.getMessageInfo(mBinding)
