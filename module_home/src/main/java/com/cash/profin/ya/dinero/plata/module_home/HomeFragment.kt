@@ -10,18 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
+import com.cash.profin.ya.dinero.plata.module_base.constants.ViewtTypeConstants
+import com.cash.profin.ya.dinero.plata.module_base.listener.ViewClickListener
 import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_home.adapter.NewsTopHeadLineAdapter
 import com.cash.profin.ya.dinero.plata.module_home.bean.Article
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopularBinding
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QueryDocumentSnapshot
 
 
 @Route(path = RouterPaths.HOME_POPULAR)
 
-class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
+class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
 
     private var mCount:Int =0;
     private lateinit var mAdapter: NewsTopHeadLineAdapter
@@ -132,5 +133,12 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>() {
                 (recyclerView.computeVerticalScrollExtent()+recyclerView.computeVerticalScrollOffset()>=
                         recyclerView.computeVerticalScrollRange())
 
+    }
+
+
+    override fun onClick(type: Int, obj2: Object) {
+        if(type == ViewtTypeConstants.VIEW_GENDER){
+            Toast.makeText(context,"收到了性别的提示",Toast.LENGTH_SHORT).show()
+        }
     }
 }
