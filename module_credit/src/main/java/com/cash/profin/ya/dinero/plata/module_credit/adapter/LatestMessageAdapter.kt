@@ -31,7 +31,6 @@ class LatestMessageAdapter():
     }
 
     override fun getItemCount(): Int {
-//        return mArticleList.size
         return mDocumentSnapshots.size
     }
 

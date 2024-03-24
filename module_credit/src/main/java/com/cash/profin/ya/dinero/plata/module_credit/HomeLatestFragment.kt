@@ -14,7 +14,7 @@ import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
 import com.cash.profin.ya.dinero.plata.module_base.ui.BaseFragment
 import com.cash.profin.ya.dinero.plata.module_credit.databinding.HomeFragmentLatestBinding
 import com.cash.profin.ya.dinero.plata.module_home.adapter.LatestMessageAdapter
-import com.cash.profin.ya.dinero.plata.module_home.viewmodel.HomeLatesetViewModel
+import com.cash.profin.ya.dinero.plata.module_credit.viewmodel.HomeLatesetViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
