@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+<!--    <style name="custom_title_bar" parent="android:Theme.Material.Light">-->
+    <style name="custom_title_bar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+            <item name="android:windowTitleSize">40dp</item>
+            <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+<!--                <item name="android:windowActionBar">false</item>-->
+    </style>
+
+
+
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">#D34C62</item>
+    </style>
+
+</resources>

@@ -10,6 +10,7 @@ import com.cash.profin.ya.dinero.plata.module_main.databinding.MainActivityMainB
 class MainActivity:BaseActivity<MainActivityMainBinding>() {
 
     override fun initData() {
+
     }
 
     override fun initView() {
