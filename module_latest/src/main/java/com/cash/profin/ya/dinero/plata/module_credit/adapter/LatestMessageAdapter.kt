@@ -75,7 +75,12 @@ class LatestMessageAdapter():
         holder.binding.tvFavoriteNumber.text = "$favarite_number"
 
         holder.binding.ivEdit.setOnClickListener({
-            ARouter.getInstance().build(RouterPaths.EDIT_ACTIVITY)
+            ARouter.getInstance()
+                .build(RouterPaths.EDIT_ACTIVITY)
+                .withString("name",name)
+                .withString("gender",gender)
+                .withLong("age",age)
+                .withString("hobby",hobby)
                 .navigation()
         })
 
