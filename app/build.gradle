@@ -23,7 +23,7 @@ dependencies {
     implementation project(path: ':module_base')
 
     implementation project(path: ':module_main')
-    implementation project(path: ':module_credit')
+    implementation project(path: ':module_latest')
     implementation project(path: ':module_popular')
     implementation project(path: ':module_mine')
 }
