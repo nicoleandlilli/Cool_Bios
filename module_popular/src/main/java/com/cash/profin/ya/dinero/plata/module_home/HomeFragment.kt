@@ -71,8 +71,8 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
             linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
             layoutManager = linearLayoutManager
 
-            val dividerDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
-            addItemDecoration(dividerDecoration)
+//            val dividerDecoration = DividerItemDecoration(context, LinearLayoutManager.VERTICAL)
+//            addItemDecoration(dividerDecoration)
 
 //            addOnScrollListener(object: RecyclerView.OnScrollListener(){
 //                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
