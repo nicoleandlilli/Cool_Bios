@@ -1,6 +1,7 @@
 package com.cash.profin.ya.dinero.plata.module_home.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.viewbinding.ViewBinding
 import com.cash.profin.ya.dinero.plata.module_base.viewmodel.BaseViewModel
@@ -14,20 +15,46 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(): BaseViewModel() {
 
-    suspend fun getMessageInfo(binding: ViewBinding): Task<QuerySnapshot>? {
+    var mMutableLiveDataTask : MutableLiveData<Task<QuerySnapshot>?> = MutableLiveData()
+
+
+    fun getMessageInfo(binding: ViewBinding) {
         var task: Task<QuerySnapshot>? = null
 
-        var job = viewModelScope.launch {
+        viewModelScope.launch {
             val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-            task= db.collection("message")
-                .whereGreaterThanOrEqualTo("favarite_number",500)
+            task = db.collection("message")
+                .whereGreaterThanOrEqualTo("favarite_number", 500)
                 .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful && task.result.size() > 0) {
+                        mMutableLiveDataTask.postValue(task)
+                    } else {
+                        Log.w("HomeFragment", "Error getting documents.", task.exception)
+                    }
+                }
         }
-        job.join()
-
-        return task
-
     }
+
+    fun getMutableLiveDataTask():MutableLiveData<Task<QuerySnapshot>?>{
+        return mMutableLiveDataTask
+    }
+
+//    suspend fun getMessageInfo(binding: ViewBinding): Task<QuerySnapshot>? {
+//        var task: Task<QuerySnapshot>? = null
+//
+//        var job = viewModelScope.launch {
+//            val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+//            task= db.collection("message")
+//                .whereGreaterThanOrEqualTo("favarite_number",500)
+//                .get()
+//            mMutableLiveDataTask.postValue(task)
+//        }
+//        job.join()
+//
+//        return task
+//
+//    }
 
     suspend fun getFemaleMessageInfo(binding: ViewBinding): Task<QuerySnapshot>? {
         var task: Task<QuerySnapshot>? = null

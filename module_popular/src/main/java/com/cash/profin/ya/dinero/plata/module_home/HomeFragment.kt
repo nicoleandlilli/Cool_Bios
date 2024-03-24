@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,6 +54,14 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
             }
         }
 
+        mHomeViewModel.getMutableLiveDataTask().observe(this, Observer { task:Task<QuerySnapshot>? ->
+            mBinding.swipeRefreshLayout.isRefreshing = false
+            if (task != null) {
+                var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
+                mAdapter.setArticleList(documentSnapshots)
+            }
+        })
+
     }
 
     private fun setRecyclerView() {
@@ -97,31 +106,35 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
     }
 
     private fun getData() {
+
+
+
         mBinding.swipeRefreshLayout.isRefreshing = true
+        mHomeViewModel.getMessageInfo(mBinding)
 
-        var task: Task<QuerySnapshot>? = runBlocking {
+        //        var task: Task<QuerySnapshot>? = runBlocking {
+//
+//            var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
+//
+//            if(gender==PrefsConfig.GENDER_BOTH){
+//                mHomeViewModel.getMessageInfo(mBinding)
+//            }else if(gender==PrefsConfig.GENDER_FEMALE){
+//                mHomeViewModel.getFemaleMessageInfo(mBinding)
+//            }else{
+//                mHomeViewModel.getMaleMessageInfo(mBinding)
+//            }
+//
+//        }
 
-            var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
-
-            if(gender==PrefsConfig.GENDER_BOTH){
-                mHomeViewModel.getMessageInfo(mBinding)
-            }else if(gender==PrefsConfig.GENDER_FEMALE){
-                mHomeViewModel.getFemaleMessageInfo(mBinding)
-            }else{
-                mHomeViewModel.getMaleMessageInfo(mBinding)
-            }
-
-        }
-
-        task?.addOnCompleteListener { task ->
-            mBinding.swipeRefreshLayout.isRefreshing = false
-            if (task.isSuccessful && task.result.size()>0) {
-                var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
-                mAdapter.setArticleList(documentSnapshots)
-            } else {
-                Log.w("HomeFragment", "Error getting documents.", task.exception)
-            }
-        }
+//        task?.addOnCompleteListener { task ->
+//            mBinding.swipeRefreshLayout.isRefreshing = false
+//            if (task.isSuccessful && task.result.size()>0) {
+//                var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
+//                mAdapter.setArticleList(documentSnapshots)
+//            } else {
+//                Log.w("HomeFragment", "Error getting documents.", task.exception)
+//            }
+//        }
 
     }
 
