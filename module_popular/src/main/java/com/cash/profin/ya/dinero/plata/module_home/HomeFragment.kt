@@ -1,7 +1,6 @@
 package com.cash.profin.ya.dinero.plata.module_home
 
 
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isEmpty
@@ -23,9 +22,7 @@ import com.cash.profin.ya.dinero.plata.module_home.databinding.HomeFragmentPopul
 import com.cash.profin.ya.dinero.plata.module_home.viewmodel.HomeViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import kotlinx.coroutines.runBlocking
 
 
 @Route(path = RouterPaths.HOME_POPULAR)
@@ -58,6 +55,9 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
             mBinding.swipeRefreshLayout.isRefreshing = false
             if (task != null) {
                 var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
+                mAdapter.setArticleList(documentSnapshots)
+            }else{
+                var documentSnapshots : ArrayList<DocumentSnapshot> = ArrayList<DocumentSnapshot>() as ArrayList<DocumentSnapshot>
                 mAdapter.setArticleList(documentSnapshots)
             }
         })
@@ -97,45 +97,22 @@ class HomePopular:BaseFragment<HomeFragmentPopularBinding>(),ViewClickListener {
     override fun onResume() {
         super.onResume()
         setAdapterData()
-        Log.d("HomeFragment", "onResume()..............................")
     }
 
     private fun setAdapterData(){
         getData()
-
     }
 
     private fun getData() {
-
-
-
         mBinding.swipeRefreshLayout.isRefreshing = true
-        mHomeViewModel.getMessageInfo(mBinding)
-
-        //        var task: Task<QuerySnapshot>? = runBlocking {
-//
-//            var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
-//
-//            if(gender==PrefsConfig.GENDER_BOTH){
-//                mHomeViewModel.getMessageInfo(mBinding)
-//            }else if(gender==PrefsConfig.GENDER_FEMALE){
-//                mHomeViewModel.getFemaleMessageInfo(mBinding)
-//            }else{
-//                mHomeViewModel.getMaleMessageInfo(mBinding)
-//            }
-//
-//        }
-
-//        task?.addOnCompleteListener { task ->
-//            mBinding.swipeRefreshLayout.isRefreshing = false
-//            if (task.isSuccessful && task.result.size()>0) {
-//                var documentSnapshots : ArrayList<DocumentSnapshot> = task.result.documents as ArrayList<DocumentSnapshot>
-//                mAdapter.setArticleList(documentSnapshots)
-//            } else {
-//                Log.w("HomeFragment", "Error getting documents.", task.exception)
-//            }
-//        }
-
+        var gender:String by PrefsUtil(PrefsConfig.GENDER, PrefsConfig.GENDER_BOTH)
+        if(gender==PrefsConfig.GENDER_BOTH){
+            mHomeViewModel.getMessageInfo()
+        }else if(gender==PrefsConfig.GENDER_FEMALE){
+            mHomeViewModel.getFemaleMessageInfo()
+        }else{
+            mHomeViewModel.getMaleMessageInfo()
+        }
     }
 
 

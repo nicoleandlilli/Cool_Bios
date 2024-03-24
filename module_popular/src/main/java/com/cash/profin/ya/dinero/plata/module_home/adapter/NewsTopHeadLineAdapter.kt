@@ -21,6 +21,7 @@ class NewsTopHeadLineAdapter():
     fun setArticleList(documentSnapshots : ArrayList<DocumentSnapshot>){
         mDocumentSnapshots.clear()
         this.mDocumentSnapshots = documentSnapshots
+        Log.d("HomeFragment","this.mDocumentSnapshots........................${this.mDocumentSnapshots.size}")
         notifyDataSetChanged()
     }
     inner class ArticleViewHolder(val binding: HomePopularItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -44,6 +45,7 @@ class NewsTopHeadLineAdapter():
         var context = holder.binding.lvContent.context
 
         var linearLayout = holder.binding.lvContent
+        linearLayout.removeAllViews()
 
         var name:String = documentSnapshot["name"].toString();
         Log.d("HomeFragment", "name  => " + name)
