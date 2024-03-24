@@ -3,12 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
+
     <com.cash.profin.ya.dinero.plata.lib_common.view.navigationbar.NavigationBar
         android:id="@+id/navigationBar"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="#FFF3F6"
-        android:layout_alignParentTop="true">
+        android:layout_below="@id/cv_titlebar">
 
     </com.cash.profin.ya.dinero.plata.lib_common.view.navigationbar.NavigationBar>
 
