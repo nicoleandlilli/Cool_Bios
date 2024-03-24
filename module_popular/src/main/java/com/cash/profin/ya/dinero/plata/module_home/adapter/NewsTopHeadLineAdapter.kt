@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
+import com.cash.profin.ya.dinero.plata.module_base.constants.RouterPaths
 import com.cash.profin.ya.dinero.plata.module_home.R
 import com.cash.profin.ya.dinero.plata.module_home.databinding.HomePopularItemBinding
 import com.google.firebase.firestore.DocumentSnapshot
@@ -74,6 +76,17 @@ class NewsTopHeadLineAdapter():
 
         var favarite_number:Long = documentSnapshot["favarite_number"] as Long
         holder.binding.tvFavoriteNumber.text = "$favarite_number"
+
+        holder.binding.ivEdit.setOnClickListener({
+            ARouter.getInstance()
+                .build(RouterPaths.EDIT_ACTIVITY)
+                .withString("document_id",documentSnapshot.id)
+                .withString("name",name)
+                .withString("gender",gender)
+                .withLong("age",age)
+                .withString("hobby",hobby)
+                .navigation()
+        })
 
     }
 

@@ -77,6 +77,7 @@ class LatestMessageAdapter():
         holder.binding.ivEdit.setOnClickListener({
             ARouter.getInstance()
                 .build(RouterPaths.EDIT_ACTIVITY)
+                .withString("document_id",documentSnapshot.id)
                 .withString("name",name)
                 .withString("gender",gender)
                 .withLong("age",age)
