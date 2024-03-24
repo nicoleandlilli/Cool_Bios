@@ -7,6 +7,8 @@ interface RouterPaths {
         const val HOME_LATEST = "/latest/home_latest"
         const val MINE_FRAGMENT = "/mine/mine_fragment"
 
+        const val EDIT_ACTIVITY = "/edit/edit_activity"
+
         val MAIN_FRAGMENTS =
             arrayOf(HOME_POPULAR, HOME_LATEST)
     }

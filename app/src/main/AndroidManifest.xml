@@ -25,6 +25,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.cash.profin.ya.dinero.plata.module_main.ui.EditActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
+
     </application>
 
 
